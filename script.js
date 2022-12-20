@@ -9,7 +9,7 @@ document.getElementById("weatherSearch").addEventListener('click', function (e) 
 
 	var city = e.path[1][0].value;
 
-	console.log(city);
+	//console.log(city);
 
 	weather.innerHTML = city;
 
