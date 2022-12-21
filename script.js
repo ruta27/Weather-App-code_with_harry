@@ -1,4 +1,5 @@
 
+
 var myModal = new bootstrap.Modal(document.getElementById('Modal'), {});
 
 // first method
@@ -24,30 +25,35 @@ document.getElementById("weatherSearch").addEventListener('click', function (e) 
 	fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=' + city, options).then(function (response) {
 		return response.json();
 	}).then(function (response) {
-		
-		
 		if ("error" in response) {
-
 			myModal.toggle();
 			
 		} else {
 
-			max_temp.innerHTML = response.max_temp;
-			min_temp.innerHTML = response.min_temp;
-			temprature.innerHTML = response.temp;
-			humidity_pct.innerHTML = response.humidity;
-			cloudpct.innerHTML = response.cloud_pct;
-			windspeed.innerHTML = response.wind_speed;
-			winddegree.innerHTML = response.wind_degrees;
+
 
 			//this function is for addition of rows in table
 			dynamicrows(response, city);
+
+			let {cloud_pct,feels_like,humidity,max_temp,min_temp,sunrise,sunset,temp,wind_degrees,wind_speed} = response;
+
+			maxTemp.innerHTML = max_temp;
+
+			minTemp.innerHTML = min_temp;
+
+			humidityPct.innerHTML = humidity;
+
+			cloudPct.innerHTML = cloud_pct;
+
+			windSpeed.innerHTML = wind_degrees;
+
+			windDegree.innerHTML = wind_degrees;
+
 		}
 	}).catch(function (err) {
 		console.error(err);
 	});
 });
-
 
 let dynamicrows = (response,city) => {
 	
@@ -57,17 +63,9 @@ let dynamicrows = (response,city) => {
 
 }
 
-
-
-
-
-
-
-
-
-
-
 //second tarika
 document.getElementById("weatherSearch").onclick = function (t) {
 	t.preventDefault();
 };
+
+
